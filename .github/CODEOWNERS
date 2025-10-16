@@ -1,0 +1,24 @@
+# Code Owners for AI Code Validator
+# These owners will be automatically requested for review when someone opens a pull request.
+
+# Default owners for everything in the repo
+*                                    @ashishmahawal
+
+# Core modules
+/ai_code_validator/                  @ashishmahawal
+
+# Tests
+/tests/                              @ashishmahawal
+
+# GitHub Actions and workflows
+/.github/                            @ashishmahawal
+
+# Documentation
+/*.md                                @ashishmahawal
+/docs/                               @ashishmahawal
+
+# Configuration files
+/setup.py                            @ashishmahawal
+/requirements*.txt                   @ashishmahawal
+/pytest.ini                          @ashishmahawal
+/.pre-commit-config.yaml             @ashishmahawal

@@ -40,31 +40,124 @@ Help us detect more AI code issues:
    source venv/bin/activate  # On Windows: venv\Scripts\activate
    ```
 
-3. **Install in development mode**
+3. **Install development dependencies and setup**
    ```bash
+   # Quick setup
+   make init
+
+   # Or manually:
+   pip install -r requirements-dev.txt
    pip install -e .
+   pre-commit install
    ```
 
 4. **Make your changes**
    - Create a new branch: `git checkout -b feature-name`
    - Make your changes
-   - Test thoroughly
+   - Write tests for new functionality
+   - Run tests and linters locally
 
-5. **Test your changes**
+5. **Run tests locally**
    ```bash
-   # Test on example files
-   aivalidate check tests/test_examples/
+   # Run all tests
+   make test
+   # or: pytest
 
-   # Test specific functionality
-   python -m ai_code_validator.cli check your_test_file.py
+   # Run with coverage
+   make test-cov
+   # or: pytest --cov=ai_code_validator --cov-report=html
+
+   # Run specific test file
+   pytest tests/test_analyzer.py
+
+   # Run specific test function
+   pytest tests/test_analyzer.py::TestCodeAnalyzer::test_analyze_python_file
    ```
 
-## Code Style
+6. **Ensure code quality**
+   ```bash
+   # Run all quality checks
+   make check
 
-- Follow PEP 8 for Python code
-- Use type hints where appropriate
-- Add docstrings to functions and classes
-- Keep functions focused and small
+   # Run linters
+   make lint
+
+   # Format code
+   make format
+
+   # Run pre-commit hooks
+   make pre-commit
+   ```
+
+## Code Style & Standards
+
+- **Formatting**: Use `black` with 100 character line length
+- **Import Sorting**: Use `isort` with black-compatible profile
+- **Linting**: Pass `flake8` checks
+- **Type Hints**: Use type hints for function signatures
+- **Docstrings**: Add docstrings to all public functions and classes
+- **Tests**: Maintain 70%+ code coverage
+
+## Writing Tests
+
+All new features must include tests. We use pytest for testing.
+
+### Test Structure
+
+```python
+"""
+Unit tests for [module name].
+"""
+
+import pytest
+from ai_code_validator.your_module import YourClass
+
+
+class TestYourClass:
+    """Test cases for YourClass."""
+
+    def test_initialization(self):
+        """Test class initialization."""
+        instance = YourClass()
+        assert instance is not None
+
+    def test_your_feature(self):
+        """Test specific feature."""
+        # Arrange
+        instance = YourClass()
+        input_data = "test data"
+
+        # Act
+        result = instance.your_method(input_data)
+
+        # Assert
+        assert result == expected_value
+```
+
+### Testing Guidelines
+
+1. **One test per functionality**: Each test should verify one specific behavior
+2. **Arrange-Act-Assert**: Structure tests clearly
+3. **Descriptive names**: Test names should describe what they test
+4. **Use fixtures**: Share common test data via pytest fixtures (see `tests/conftest.py`)
+5. **Test edge cases**: Include tests for empty inputs, large inputs, invalid inputs
+6. **Mock external calls**: Use `unittest.mock` for network requests
+
+### Running Specific Tests
+
+```bash
+# Run tests for a specific module
+pytest tests/test_analyzer.py -v
+
+# Run tests matching a pattern
+pytest -k "test_sql" -v
+
+# Run tests and stop at first failure
+pytest -x
+
+# Run tests with detailed output
+pytest -vv
+```
 
 ## Adding New Detection Patterns
 

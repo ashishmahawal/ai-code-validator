@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 💬 Discussions
+    url: https://github.com/ashishmahawal/ai-code-validator/discussions
+    about: Ask questions, share ideas, or discuss with the community
+  - name: 📚 Documentation
+    url: https://github.com/ashishmahawal/ai-code-validator#readme
+    about: Check the documentation for usage guides and examples
+  - name: 🔒 Security Issue
+    url: https://github.com/ashishmahawal/ai-code-validator/security
+    about: Report a security vulnerability privately

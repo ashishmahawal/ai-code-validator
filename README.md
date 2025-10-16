@@ -4,7 +4,10 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
-[![PyPI version](https://badge.fury.io/py/ai-code-validator.svg)](https://badge.fury.io/py/ai-code-validator)
+[![CI](https://github.com/ashishmahawal/ai-code-validator/actions/workflows/ci.yml/badge.svg)](https://github.com/ashishmahawal/ai-code-validator/actions/workflows/ci.yml)
+[![codecov](https://codecov.io/gh/ashishmahawal/ai-code-validator/branch/master/graph/badge.svg)](https://codecov.io/gh/ashishmahawal/ai-code-validator)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
 > A CLI tool that analyzes AI-generated code for hallucinations, security vulnerabilities, and outdated patterns. Get a confidence score before you commit!
 
@@ -266,22 +269,34 @@ Contributions are welcome! Here's how you can help:
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/ai-code-validator.git
+git clone https://github.com/ashishmahawal/ai-code-validator.git
 cd ai-code-validator
 
-# Create virtual environment
+# Initialize development environment (installs deps + pre-commit hooks)
+make init
+
+# Or manually:
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Install in development mode
+pip install -r requirements-dev.txt
 pip install -e .
+pre-commit install
 
 # Run tests
-pytest tests/
+make test
+# or: pytest tests/
+
+# Run tests with coverage
+make test-cov
+
+# Run linters
+make lint
+
+# Format code
+make format
 ```
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed contribution guidelines.
 
 ---
 
